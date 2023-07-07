@@ -1,0 +1,212 @@
+package de.store24.gepir;
+
+import javax.xml.ws.Holder;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.gs1.ws.gepir.Gepir4XService;
+import org.gs1.ws.gepir.Gepir4XService_Service;
+import org.gs1.ws.gepir4.GetKeyLicensee;
+import org.gs1.ws.gepir4.GetKeyLicenseeResponse;
+
+import de.store24.logic.db.entities.Company;
+import gs1.gepir.gepir_common.xsd._4.GepirRequestedKeyType;
+import gs1.gepir.gepir_common.xsd._4.RequestedKeyCodeType;
+import gs1.gepir.gepir_party.xsd._4.PartyDataLineType;
+import gs1.gepir.get_key_licensee.xsd._4.GetKeyLicenseeType;
+import gs1.gepir.request_header.xsd._4.RequestHeaderType;
+import gs1.gepir.response_header.xsd._4.ResponseHeaderType;
+import gs1.shared.shared_common.xsd._3.AddressType;
+import gs1.shared.shared_common.xsd._3.CommunicationChannelType;
+import gs1.shared.shared_common.xsd._3.ContactType;
+import gs1.shared.shared_common.xsd._3.LanguageCodeType;
+
+public class GepirClient400 extends AGepirClient
+{
+	private final Gepir4XService service;
+	private LanguageCodeType lngType;
+
+	public GepirClient400(	final String requesterGln, final String language, final int cascade,
+							final String[] ignoreGLNs)
+	{
+		super(requesterGln, language, cascade, ignoreGLNs);
+		this.service = new Gepir4XService_Service().getGepir4XPort();
+	}
+
+	@Override
+	protected void init(final String language)
+	{
+		// TODO Auto-generated method stub
+		if (language != null)
+		{
+			this.lngType = new LanguageCodeType();
+			this.lngType.setValue(language);
+		}
+	}
+
+	@Override
+	public Company getCompanyByGtin(final String gtin) throws GepirResponseException
+	{
+		final RequestHeaderType header = this.CreateHeader();
+		final GetKeyLicensee getKeyLicense = this.CreateRequest(gtin, GepirRequestedKeyTypeValue.GTIN);
+		final Holder<GetKeyLicenseeResponse> resultKeyLicensee = new Holder<>(new GetKeyLicenseeResponse());
+		final Holder<ResponseHeaderType> responseHeader = new Holder<>(new ResponseHeaderType());
+		this.service.getKeyLicensee(getKeyLicense, header, resultKeyLicensee, responseHeader);
+		return this.CreateCompany(resultKeyLicensee.value);
+	}
+
+	@Override
+	public Company getCompanyByGln(final String gln) throws GepirResponseException
+	{
+		final RequestHeaderType header = this.CreateHeader();
+		final GetKeyLicensee getKeyLicense = this.CreateRequest(gln, GepirRequestedKeyTypeValue.GLN);
+		final Holder<GetKeyLicenseeResponse> resultKeyLicensee = new Holder<>(new GetKeyLicenseeResponse());
+		final Holder<ResponseHeaderType> responseHeader = new Holder<>(new ResponseHeaderType());
+		this.service.getKeyLicensee(getKeyLicense, header, resultKeyLicensee, responseHeader);
+
+		return this.CreateCompany(resultKeyLicensee.value);
+	}
+
+	private Company CreateCompany(final GetKeyLicenseeResponse response) throws GepirResponseException
+	{
+
+		if (response == null)
+			return null;
+
+		int returnCode = 0;
+		PartyDataLineType partyDataLine = null;
+
+		for (final PartyDataLineType partyDataLineType : response.getGepirParty().getPartyDataLine())
+			if (Integer.parseInt(partyDataLineType.getReturnCode().getValue()) == AGepirClient.RETURN_CODE_SUCCESS)
+			{
+				partyDataLine = partyDataLineType;
+				break;
+			}
+			else
+				returnCode = Integer.parseInt(partyDataLineType.getReturnCode().getValue());
+
+		if (partyDataLine == null)
+			if (returnCode == AGepirClient.RETURN_CODE_RECONNECT)
+				throw new GepirResponseException(returnCode);
+			else
+				return null;
+
+		// return null in case company is on ignore list
+		if (ArrayUtils.contains(this.ignoreGLNs, partyDataLine.getGS1KeyLicensee().getGln()))
+			return null;
+
+		final Company result = new Company();
+
+		result.setName(StringUtils.join(partyDataLine.getGS1KeyLicensee().getPartyName(), ", "));
+		result.setAddress(this.createAddressString(partyDataLine.getAddress()));
+		result.setGcp(partyDataLine.getGS1CompanyPrefix());
+		result.setGln(partyDataLine.getGS1KeyLicensee().getGln());
+
+		// gepir data is not always correct, so set to null to pass validation
+		// TODO maybe add parameter to toggle this correction off
+		if (!result.isValidGcp())
+			result.setGcp(null);
+		for (final ContactType contact : partyDataLine.getContact())
+			for (final CommunicationChannelType channel : contact.getCommunicationChannel())
+				if (channel.getCommunicationChannelCode().getValue().equals("WEBSITE"))
+				{
+					if (StringUtils.isNotBlank(channel.getCommunicationValue()))
+						result.setUrl(channel.getCommunicationValue());
+				}
+				else if (channel.getCommunicationChannelCode().getValue().equals("EMAIL"))
+					if (StringUtils.isNotBlank(channel.getCommunicationValue()))
+						result.setEmail(channel.getCommunicationValue());
+		return result;
+	}
+
+	private String createAddressString(final AddressType address)
+	{
+		if (address == null)
+			return null;
+		final StringBuilder result = new StringBuilder();
+
+		if (!StringUtils.isBlank(address.getStreetAddressOne()))
+			result.append(address.getStreetAddressOne() + Company.ADDRESS_SEPARATOR);
+		if (!StringUtils.isBlank(address.getStreetAddressTwo()))
+			result.append(address.getStreetAddressTwo() + Company.ADDRESS_SEPARATOR);
+		if (!StringUtils.isBlank(address.getStreetAddressThree()))
+			result.append(address.getStreetAddressThree() + Company.ADDRESS_SEPARATOR);
+
+		// optional po box number
+		if (!StringUtils.isBlank(address.getPOBoxNumber()))
+			result.append(address.getPOBoxNumber() + Company.ADDRESS_SEPARATOR);
+		// optional division. Not existing anymore
+		// if (!StringUtils.isBlank(address.getSubDivision()))
+		// result.append(address.getSubDivision() + Company.ADDRESS_SEPARATOR);
+		// optional postalcode
+		if (!StringUtils.isBlank(address.getPostalCode()))
+			result.append(address.getPostalCode() + " ");
+		result.append(address.getCity() + Company.ADDRESS_SEPARATOR + address.getCountryCode().getValue());
+
+		return StringUtils.isNotBlank(result.toString()) ? result.toString() : null;
+	}
+
+	private GetKeyLicensee CreateRequest(final String value, final GepirRequestedKeyTypeValue valueType)
+	{
+		final RequestedKeyCodeType keyCodeType = new RequestedKeyCodeType();
+		keyCodeType.setValue(valueType.toString());
+
+		final GepirRequestedKeyType gepirRequestedKeyType = new GepirRequestedKeyType();
+		gepirRequestedKeyType.setRequestedLanguage(this.lngType);
+		gepirRequestedKeyType.setRequestedKeyCode(keyCodeType);
+		gepirRequestedKeyType.setRequestedKeyValue(value);
+
+		final GetKeyLicenseeType getKeyLicenseeType = new GetKeyLicenseeType();
+		getKeyLicenseeType.getGetKeyLicensee().add(gepirRequestedKeyType);
+
+		final GetKeyLicensee getKeyLicensee = new GetKeyLicensee();
+		getKeyLicensee.setGetKeyLicensee(getKeyLicenseeType);
+		return getKeyLicensee;
+	}
+
+	private RequestHeaderType CreateHeader()
+	{
+		final RequestHeaderType header = new RequestHeaderType();
+		header.setCascade(this.cascade);
+		header.setRequesterGLN(this.requesterGln);
+		return header;
+	}
+
+	private enum GepirRequestedKeyTypeValue
+	{
+		GTIN,
+		GLN
+	}
+
+	public static void main(final String[] args) throws GepirResponseException
+	{
+		final AGepirClient client = new GepirClient400("4000001987863", "DE", 9, null);
+
+		System.out.println("GetCompanyByGln: 4012014000002");
+		Company company = client.getCompanyByGln("4012014000002");
+		if (company == null)
+			System.out.println("No result found for gln: 4012014000002");
+		else
+		{
+			System.out.println("Name: " + company.getName());
+			System.out.println("GCP: " + company.getGcp());
+			System.out.println("Address: " + company.getAddress());
+			System.out.println("Name: " + company.getGln());
+			System.out.println("Website: " + company.getUrl());
+			System.out.println("Email: " + company.getEmail());
+		}
+
+		company = client.getCompanyByGtin("05000112548280");
+		if (company == null)
+			System.out.println("No result found for gtin: 05000112548280");
+		else
+		{
+			System.out.println("Name: " + company.getName());
+			System.out.println("GCP: " + company.getGcp());
+			System.out.println("Address: " + company.getAddress());
+			System.out.println("Name: " + company.getGln());
+			System.out.println("Website: " + company.getUrl());
+			System.out.println("Email: " + company.getEmail());
+		}
+	}
+}

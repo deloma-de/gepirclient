@@ -1,0 +1,231 @@
+package de.store24.gepir;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.xml.ws.handler.Handler;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.gepir.ArrayOfLanguage;
+import org.gepir.CommunicationChannelType;
+import org.gepir.GepirParty;
+import org.gepir.GetPartyByGLN;
+import org.gepir.GetPartyByGTIN;
+import org.gepir.PartyContactType;
+import org.gepir.PartyDataLineType;
+import org.gepir.Router;
+import org.gepir.RouterSoap;
+
+import ch.ean.gepir.GepirSoapHandler;
+import de.store24.logic.db.entities.Company;
+import de.store24.utils.UrlUtils;
+
+/**
+ * Gs1 Gepir Client connection class
+ *
+ * @author Florian Keller (c) 2014, Marco Janc (c) 2014 - 2016
+ */
+public class GepirClient310 extends AGepirClient
+{
+	private final static BigDecimal VERSION = new BigDecimal("310");
+
+	/**
+	 * Cached gepir service
+	 */
+	private final Router router;
+	private final ArrayOfLanguage languages = new ArrayOfLanguage();
+
+	/**
+	 * Creates a new GepirClient using the given requester GLN and cascade
+	 * level.<br>
+	 * Creates a new {@link Router} instance so this constructor so any
+	 * exceptions resulting from down services shall be catched.
+	 *
+	 * @param requesterGln
+	 * @param languages Optional ISO 639-1 language codes to use for request
+	 * @param cascade
+	 * @param ignoreGLNs List of GLN's of Company's that shall be ignored and
+	 *            null returned on retrieval methods.
+	 *
+	 * @see GepirSoapHandler#GepirSoapHandler(String, Integer)
+	 */
+	public GepirClient310(	final String requesterGln, final Collection<String> languages, final int cascade,
+							final String... ignoreGLNs)
+	{
+		super(requesterGln, languages, cascade, ignoreGLNs);
+
+		this.router = new Router();
+
+		// or use @HandlerChain(file = "handlers.xml")
+		this.router.setHandlerResolver(portInfo -> {
+			final List<Handler> handlers = new ArrayList<Handler>();
+			final GepirSoapHandler soapHandler = new GepirSoapHandler(requesterGln, cascade);
+			handlers.add(soapHandler);
+			return handlers;
+		});
+	}
+
+	@Override
+	public void init(final Collection<String> languages)
+	{
+		if (languages != null)
+			for (final String language : languages)
+				this.languages.getLanguage().add(language); // "DE"
+	}
+
+	@Override
+	public Company getCompanyByGtin(final String gtin) throws GepirResponseException
+	{
+		final GetPartyByGTIN getPartyByGTIN = new GetPartyByGTIN();
+		getPartyByGTIN.setRequestedLanguages(this.languages);
+		getPartyByGTIN.setVersion(GepirClient310.VERSION);
+		getPartyByGTIN.getRequestedGtin().add(gtin);
+
+		return this.createCompanyByPartyDataLine(
+			this.router.getRouterSoap().getPartyByGTIN(getPartyByGTIN).getPartyDataLine());
+	}
+
+	@Override
+	public Company getCompanyByGln(final String gln) throws GepirResponseException
+	{
+		final GetPartyByGLN getPartyByGLN = new GetPartyByGLN();
+		getPartyByGLN.setRequestedLanguages(this.languages);
+		getPartyByGLN.setVersion(GepirClient310.VERSION);
+		getPartyByGLN.getRequestedGln().add(gln);
+
+		return this
+			.createCompanyByPartyDataLine(this.router.getRouterSoap().getPartyByGLN(getPartyByGLN).getPartyDataLine());
+	}
+
+	/**
+	 * Retrieves a valid Company from the given data. <br>
+	 * <br>
+	 * In case company has an invalid GCP, it is set to null.
+	 *
+	 * @see Company#isValidGcp()
+	 *
+	 * @param list
+	 * @return
+	 * @throws GepirResponseException Only purpose is to detect if maximum
+	 *             request per day exceeded. Remove if premium account
+	 *             available.
+	 */
+	private Company createCompanyByPartyDataLine(final List<PartyDataLineType> list) throws GepirResponseException
+	{
+		int returnCode = 0;
+		PartyDataLineType partyDataLine = null;
+
+		for (final PartyDataLineType partyDataLineType : list)
+			if (partyDataLineType.getReturnCode() != null)
+				if (partyDataLineType.getReturnCode().intValue() == AGepirClient.RETURN_CODE_SUCCESS)
+				{
+					partyDataLine = partyDataLineType;
+					break;
+				}
+				else
+					returnCode = partyDataLineType.getReturnCode().intValue();
+
+		if (partyDataLine == null)
+			if (returnCode == 14)
+				throw new GepirResponseException(returnCode);
+			else
+				return null;
+
+		// return null in case company is on ignore list
+		if (ArrayUtils.contains(this.ignoreGLNs, partyDataLine.getGln()))
+			return null;
+
+		final Company result = new Company();
+		result.setName(partyDataLine.getPartyName());
+		result.setAddress(GepirClient310.createAddressString(partyDataLine));
+		result.setGcp(partyDataLine.getGcp());
+		result.setGln(partyDataLine.getGln());
+
+		// gepir data is not always correct, so set to null to pass validation
+		// TODO maybe add parameter to toggle this correction off
+		if (!result.isValidGcp())
+			result.setGcp(null);
+
+		for (final PartyContactType partyContact : partyDataLine.getContact())
+			for (final CommunicationChannelType communicationChannelType : partyContact.getCommunicationChannel())
+				switch (communicationChannelType.getCommunicationChannelCode())
+				{
+					case WEBSITE:
+						if (StringUtils.isNotBlank(communicationChannelType.getValue()))
+							result.setUrl(UrlUtils.addHttpProtocol(communicationChannelType.getValue()));
+						break;
+					case EMAIL:
+						if (StringUtils.isNotBlank(communicationChannelType.getValue()))
+							result.setEmail(communicationChannelType.getValue());
+						break;
+				}
+
+		return result;
+	}
+
+	private static String createAddressString(final PartyDataLineType partyDataLine)
+	{
+		final StringBuilder address = new StringBuilder();
+		for (final String addressLine : partyDataLine.getStreetAddress())
+			address.append(addressLine + Company.ADDRESS_SEPARATOR);
+		// optional po box number
+		if (!StringUtils.isBlank(partyDataLine.getPOBoxNumber()))
+			address.append(partyDataLine.getPOBoxNumber() + Company.ADDRESS_SEPARATOR);
+		// optional division
+		if (!StringUtils.isBlank(partyDataLine.getSubDivision()))
+			address.append(partyDataLine.getSubDivision() + Company.ADDRESS_SEPARATOR);
+		// optional postalcode
+		if (!StringUtils.isBlank(partyDataLine.getPostalCode()))
+			address.append(partyDataLine.getPostalCode() + " ");
+		address.append(partyDataLine.getCity() + Company.ADDRESS_SEPARATOR + partyDataLine.getCountryISOCode());
+		return StringUtils.isNotBlank(address.toString()) ? address.toString() : null;
+	}
+
+	@SuppressWarnings("unused")
+	public static void main(final String[] args) throws GepirResponseException
+	{
+		final List<String> languages = new ArrayList<>();
+		languages.add("DE");
+		languages.add("EN");
+		final GepirClient310 gc = new GepirClient310("4000001987863", languages, 9);
+
+		// GTIN with error codes
+		// 0 - 4260133690004
+		// 5 - 23325340
+
+		final Company company = gc.getCompanyByGtin("4260133693012");
+		// internal GTIN
+		final Company company2 = gc.getCompanyByGtin("87126853");
+
+		final Company company3 = gc.getCompanyByGtin("4005500310105");
+
+		final Company company4 = gc.getCompanyByGtin("5000193000004");
+
+		gc.test();
+	}
+
+	public void test()
+	{
+		final RouterSoap routerSoap = this.router.getRouterSoap();
+
+		System.out.println(routerSoap.helloWorld());
+
+		final ArrayOfLanguage languages = new ArrayOfLanguage();
+		languages.getLanguage().add("DE");
+
+		final GetPartyByGLN getPartyByGLN = new GetPartyByGLN();
+		getPartyByGLN.setRequestedLanguages(languages);
+		getPartyByGLN.getRequestedGln().add("4260133690004");
+		getPartyByGLN.setVersion(GepirClient310.VERSION);
+
+		final GepirParty gepirParty = routerSoap.getPartyByGLN(getPartyByGLN);
+
+		final PartyDataLineType partyDataLine = gepirParty.getPartyDataLine().get(0);
+
+		System.out.println(partyDataLine.getGcp());
+		System.out.println(partyDataLine.getPartyName());
+	}
+}

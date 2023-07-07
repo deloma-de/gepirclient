@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://gepir4.ws.gs1.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Gepir4xService" targetNamespace="http://gepir4.ws.gs1.org/">
+  <wsdl:types>
+<xs:schema xmlns:tns="urn:gs1:shared:shared_common:xsd:3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:gs1:shared:shared_common:xsd:3" version="1.0">
+
+  <xs:complexType name="GS1CodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalConsignmentIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalIndividualAssetIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalLogisticUnitIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalPartyIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalReturnableAssetIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalServiceRelationIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalShipmentIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalTradeItemIdentificationTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AllowanceChargeTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="BarCodeTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CommunicationChannelCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContactTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CountryCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CountrySubdivisionCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CurrencyCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="DateFormatCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="EntityTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="FinancialAccountNumberTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="FinancialRoutingNumberTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="IncotermsCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="LanguageCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasurementUnitCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="NutrientTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartyRoleCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PaymentMethodCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PaymentTermsTypeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="TaxCategoryCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="TemperatureMeasurementUnitCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimeMeasurementUnitCodeType">
+    <xs:simpleContent>
+      <xs:extension base="tns:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AddressType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="countryCode" type="tns:CountryCodeType"/>
+      <xs:element minOccurs="0" name="countyCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="crossStreet" type="xs:string"/>
+      <xs:element minOccurs="0" name="currencyOfPartyCode" type="tns:CurrencyCodeType"/>
+      <xs:element minOccurs="0" name="languageOfThePartyCode" type="tns:LanguageCodeType"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="pOBoxNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="provinceCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="state" type="xs:string"/>
+      <xs:element minOccurs="0" name="streetAddressOne" type="xs:string"/>
+      <xs:element minOccurs="0" name="streetAddressTwo" type="xs:string"/>
+      <xs:element minOccurs="0" name="streetAddressThree" type="xs:string"/>
+      <xs:element minOccurs="0" name="geographicalCoordinates" type="tns:GeographicalCoordinatesType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GeographicalCoordinatesType">
+    <xs:sequence>
+      <xs:element name="latitude" type="xs:string"/>
+      <xs:element name="longitude" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalPartyIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalPartyIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ContactType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="contactTypeCode" type="tns:ContactTypeCodeType"/>
+      <xs:element minOccurs="0" name="personName" type="xs:string"/>
+      <xs:element minOccurs="0" name="departmentName" type="xs:string"/>
+      <xs:element minOccurs="0" name="jobTitle" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="responsibility" nillable="true" type="tns:Description70Type"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="communicationChannel" nillable="true" type="tns:CommunicationChannelType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="afterHoursCommunicationChannel" nillable="true" type="tns:CommunicationChannelType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Description70Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CommunicationChannelType">
+    <xs:sequence>
+      <xs:element name="communicationChannelCode" type="tns:CommunicationChannelCodeType"/>
+      <xs:element name="communicationValue" type="xs:string"/>
+      <xs:element minOccurs="0" name="communicationChannelName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MeasurementType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="measurementUnitCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="SizeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descriptiveSize" type="tns:Description80Type"/>
+      <xs:element minOccurs="0" name="sizeCode" type="tns:SizeCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Description80Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="SizeCodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="sizeCodeListCode" type="xs:string" use="required"/>
+        <xs:attribute name="sizeCodeListDescription" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+        <xs:attribute name="sizeCodeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalConsignmentIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalConsignmentIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="TradeItemClassificationType">
+    <xs:sequence>
+      <xs:element name="gpcCategoryCode" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassificationCode" nillable="true" type="tns:AdditionalTradeItemClassificationCodeType"/>
+      <xs:element minOccurs="0" name="gpcCategoryName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="gpcAttribute" nillable="true" type="tns:GPCAttributeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalTradeItemClassificationCodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalTradeItemClassificationCodeListCode" type="xs:string" use="required"/>
+        <xs:attribute name="additionalTradeItemClassificationCodeListVersion" type="xs:string"/>
+        <xs:attribute name="codeDescription" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="GPCAttributeType">
+    <xs:sequence>
+      <xs:element name="gpcAttributeTypeCode" type="xs:string"/>
+      <xs:element name="gpcAttributeValueCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="gpcAttributeTypeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="gpcAttributeValueName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AmountType">
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attribute name="currencyCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalIndividualAssetIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalIndividualAssetIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalLogisticUnitIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalLogisticUnitIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalReturnableAssetIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalReturnableAssetIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalServiceRelationIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalServiceRelationIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalShipmentIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalShipmentIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AdditionalTradeItemIdentificationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="additionalTradeItemIdentificationTypeCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AmountRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximumAmount" type="tns:AmountType"/>
+      <xs:element minOccurs="0" name="minimumAmount" type="tns:AmountType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codeDescription" type="xs:string"/>
+        <xs:attribute name="codeListAgencyCode" type="xs:string"/>
+        <xs:attribute name="codeListAgencyCodeListVersion" type="xs:string"/>
+        <xs:attribute name="codeListAgencyName" type="xs:string"/>
+        <xs:attribute name="codeListName" type="xs:string"/>
+        <xs:attribute name="codeListURI" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ColourCodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="colourCodeListCode" type="xs:string" use="required"/>
+        <xs:attribute name="colourCodeListDescription" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+        <xs:attribute name="colourCodeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ColourType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="colourCode" type="tns:ColourCodeType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="colourDescription" nillable="true" type="tns:Description80Type"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ConsignmentIdentificationType">
+    <xs:sequence>
+      <xs:element name="ginc" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalConsignmentIdentification" nillable="true" type="tns:AdditionalConsignmentIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CurrencyExchangeRateInformationType">
+    <xs:sequence>
+      <xs:element name="currencyConversionFromCode" type="tns:CurrencyCodeType"/>
+      <xs:element name="currencyConversionToCode" type="tns:CurrencyCodeType"/>
+      <xs:element minOccurs="0" name="exchangeRate" type="xs:float"/>
+      <xs:element minOccurs="0" name="exchangeRateDateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DateOptionalTimeType">
+    <xs:sequence>
+      <xs:element name="date" type="xs:date"/>
+      <xs:element minOccurs="0" name="time" type="xs:time"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DateTimeRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="beginDate" type="xs:date"/>
+      <xs:element minOccurs="0" name="beginTime" type="xs:time"/>
+      <xs:element minOccurs="0" name="endDate" type="xs:date"/>
+      <xs:element minOccurs="0" name="endTime" type="xs:time"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Description1000Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Description200Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Description2500Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Description35Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Description5000Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="Description500Type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="languageCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="DimensionType">
+    <xs:sequence>
+      <xs:element name="depth" type="tns:MeasurementType"/>
+      <xs:element name="height" type="tns:MeasurementType"/>
+      <xs:element name="width" type="tns:MeasurementType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentReferenceType">
+    <xs:complexContent>
+      <xs:extension base="tns:EntityIdentificationType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="creationDateTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="revisionNumber" type="xs:positiveInteger"/>
+          <xs:element minOccurs="0" name="lineItemNumber" type="xs:positiveInteger"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EntityIdentificationType">
+    <xs:sequence>
+      <xs:element name="entityIdentification" type="xs:string"/>
+      <xs:element minOccurs="0" name="contentOwner" type="tns:PartyIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PartyIdentificationType">
+    <xs:sequence>
+      <xs:element name="gln" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalPartyIdentification" nillable="true" type="tns:AdditionalPartyIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TypedEntityIdentificationType">
+    <xs:complexContent>
+      <xs:extension base="tns:EntityIdentificationType">
+        <xs:sequence>
+          <xs:element name="entityTypeCode" type="tns:EntityTypeCodeType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ExtensionType">
+    <xs:sequence>
+      <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FinancialAccountType">
+    <xs:sequence>
+      <xs:element name="financialAccountNumber" type="xs:string"/>
+      <xs:element name="financialAccountNumberTypeCode" type="tns:FinancialAccountNumberTypeCodeType"/>
+      <xs:element minOccurs="0" name="financialAccountName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FinancialRoutingNumberType">
+    <xs:sequence>
+      <xs:element name="financialRoutingNumber" type="xs:string"/>
+      <xs:element name="financialRoutingNumberTypeCode" type="tns:FinancialRoutingNumberTypeCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdentifierType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="identificationSchemeAgencyCode" type="xs:string"/>
+        <xs:attribute name="identificationSchemeAgencyCodeCodeListVersion" type="xs:string"/>
+        <xs:attribute name="identificationSchemeAgencyName" type="xs:string"/>
+        <xs:attribute name="identificationSchemeName" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="IndividualAssetIdentificationType">
+    <xs:sequence>
+      <xs:element name="giai" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalIndividualAssetIdentification" nillable="true" type="tns:AdditionalIndividualAssetIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LogisticUnitIdentificationType">
+    <xs:sequence>
+      <xs:element name="sscc" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalLogisticUnitIdentification" nillable="true" type="tns:AdditionalLogisticUnitIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MeasurementRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximumMeasurement" type="tns:MeasurementType"/>
+      <xs:element minOccurs="0" name="minimumMeasurement" type="tns:MeasurementType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MultiDescription70Type">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="description" type="tns:Description70Type"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PaymentTimePeriodType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateDue" type="xs:date"/>
+      <xs:element minOccurs="0" name="dayOfMonthDue" type="xs:gDay"/>
+      <xs:element minOccurs="0" name="timePeriodDue" type="tns:TimeMeasurementType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TimeMeasurementType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="timeMeasurementUnitCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="QuantityRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximumQuantity" type="tns:QuantityType"/>
+      <xs:element minOccurs="0" name="minimumQuantity" type="tns:QuantityType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QuantityType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="measurementUnitCode" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="RangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximum" type="xs:float"/>
+      <xs:element minOccurs="0" name="maximumType" type="xs:string"/>
+      <xs:element minOccurs="0" name="minimum" type="xs:float"/>
+      <xs:element minOccurs="0" name="minimumType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ResponsibleAgencyCodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="codeDescription" type="xs:string"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReturnableAssetIdentificationType">
+    <xs:sequence>
+      <xs:element name="grai" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalReturnableAssetIdentification" nillable="true" type="tns:AdditionalReturnableAssetIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ServiceRelationIdentificationType">
+    <xs:sequence>
+      <xs:element name="gsrn" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalServiceRelationIdentification" nillable="true" type="tns:AdditionalServiceRelationIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ShipmentIdentificationType">
+    <xs:sequence>
+      <xs:element name="gsin" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalShipmentIdentification" nillable="true" type="tns:AdditionalShipmentIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StringRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximumValue" type="xs:string"/>
+      <xs:element minOccurs="0" name="minimumValue" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TargetMarketType">
+    <xs:sequence>
+      <xs:element name="targetMarketCountryCode" type="tns:CountryCodeType"/>
+      <xs:element minOccurs="0" name="targetMarketSubdivisionCode" type="tns:CountrySubdivisionCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TemperatureMeasurementType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="temperatureMeasurementUnitCode" type="xs:string" use="required"/>
+        <xs:attribute name="codeListVersion" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="TemperatureRangeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maximumTemperature" type="tns:TemperatureMeasurementType"/>
+      <xs:element minOccurs="0" name="minimumTemperature" type="tns:TemperatureMeasurementType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TradeItemIdentificationType">
+    <xs:sequence>
+      <xs:element name="gtin" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemIdentification" nillable="true" type="tns:AdditionalTradeItemIdentificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:ns2="urn:gs1:gepir:gepir_common:xsd:4" xmlns:tns="urn:gs1:gepir:router_detail:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:router_detail:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:element name="routerDetail" type="tns:RouterDetailType"/>
+  <xs:complexType name="RouterDetailType">
+    <xs:sequence>
+      <xs:element name="routerDetailRefreshDate" type="xs:dateTime"/>
+      <xs:element name="requestedRouterDetail" type="ns2:MemberOrganisationType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:ns2="urn:gs1:gepir:gepir_common:xsd:4" xmlns:tns="urn:gs1:gepir:root_directory:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:root_directory:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:element name="rootDirectory" type="tns:RootDirectoryType"/>
+  <xs:complexType name="RootDirectoryType">
+    <xs:sequence>
+      <xs:element name="rootDirectoryDataLanguage" type="ns1:LanguageCodeType"/>
+      <xs:element name="rootDirectoryVersion" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="memberOrganisation" type="ns2:MemberOrganisationType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:gepir:gepir_common:xsd:4" xmlns:tns="urn:gs1:gepir:response_header:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:response_header:xsd:4">
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:element name="responseHeader" type="tns:ResponseHeaderType"/>
+  <xs:complexType name="ResponseHeaderType">
+    <xs:sequence>
+      <xs:element name="responderGLN" type="xs:string"/>
+      <xs:element name="numberOfHits" type="xs:nonNegativeInteger"/>
+      <xs:element name="gepirReturnCode" type="ns1:GepirReturnCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:tns="urn:gs1:gepir:request_header:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:gs1:gepir:request_header:xsd:4" version="1.0">
+
+  <xs:element name="requestHeader" type="tns:RequestHeaderType"/>
+
+  <xs:complexType name="RequestHeaderType">
+    <xs:sequence>
+      <xs:element name="requesterGLN" type="xs:string"/>
+      <xs:element minOccurs="0" name="onBehalfOfGLN" type="xs:string"/>
+      <xs:element minOccurs="0" name="isAuthenticated" type="xs:boolean"/>
+      <xs:element name="cascade" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:tns="urn:gs1:gepir:get_router_detail:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:gs1:gepir:get_router_detail:xsd:4" version="1.0">
+
+  <xs:element name="getRouterDetail" type="tns:GetRouterDetailType"/>
+
+  <xs:complexType name="GetRouterDetailType">
+    <xs:sequence>
+      <xs:element name="requestedRouter" type="xs:string"/>
+      <xs:element name="requesterRouter" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:tns="urn:gs1:gepir:get_root_directory:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:gs1:gepir:get_root_directory:xsd:4" version="1.0">
+
+  <xs:element name="getRootDirectory" type="tns:GetRootDirectoryType"/>
+
+  <xs:complexType name="GetRootDirectoryType">
+    <xs:sequence>
+      <xs:element name="requesterRouter" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:gepir:gepir_common:xsd:4" xmlns:ns2="urn:gs1:shared:shared_common:xsd:3" xmlns:tns="urn:gs1:gepir:get_prefix_licensee:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:get_prefix_licensee:xsd:4">
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:element name="getPrefixLicensee" type="tns:GetPrefixLicenseeType"/>
+  <xs:complexType name="GetPrefixLicenseeType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="getPrefixLicensee" type="ns1:GepirRequestedKeyType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:tns="urn:gs1:gepir:get_party_by_name:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:get_party_by_name:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:element name="getPartyByName" type="tns:GetPartyByNameType"/>
+  <xs:complexType name="GetPartyByNameType">
+    <xs:sequence>
+      <xs:element name="gepirGetPartyRequestParameters" type="tns:GepirGetPartyRequestParametersType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirGetPartyRequestParametersType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="requestedCity" type="xs:string"/>
+      <xs:element name="requestedCountry" type="ns1:CountryCodeType"/>
+      <xs:element minOccurs="0" name="requestedLanguage" type="ns1:LanguageCodeType"/>
+      <xs:element name="requestedPartyName" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestedPostalCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestedStreetAddress" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:gepir:gepir_common:xsd:4" xmlns:ns2="urn:gs1:shared:shared_common:xsd:3" xmlns:tns="urn:gs1:gepir:get_key_licensee:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:get_key_licensee:xsd:4">
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:element name="getKeyLicensee" type="tns:GetKeyLicenseeType"/>
+  <xs:complexType name="GetKeyLicenseeType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="getKeyLicensee" type="ns1:GepirRequestedKeyType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:tns="urn:gs1:gepir:get_item_by_gtin:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:get_item_by_gtin:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:element name="getItemByGTIN" type="tns:GetItemByGTINType"/>
+  <xs:complexType name="GetItemByGTINType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="requestedLanguage" type="ns1:LanguageCodeType"/>
+      <xs:element maxOccurs="unbounded" name="requestedGTIN" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:gepir:gepir_party:xsd:4" xmlns:tns="urn:gs1:gepir:gepir_party_ext:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:gepir_party_ext:xsd:4">
+  <xs:import namespace="urn:gs1:gepir:gepir_party:xsd:4"/>
+  <xs:element name="partyDatalineExtension" type="tns:PartyDataLineExtensionType"/>
+  <xs:complexType name="PartyDataLineExtensionType">
+    <xs:complexContent>
+      <xs:extension base="ns1:PartyDataLineType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="administeringMO" type="xs:string"/>
+          <xs:element minOccurs="0" name="registryValue" type="xs:string"/>
+          <xs:element minOccurs="0" name="registryValueType" type="xs:string"/>
+          <xs:element minOccurs="0" name="gcpType" type="xs:string"/>
+          <xs:element name="stateOfMember" type="xs:string"/>
+          <xs:element name="dateOfState" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:ns2="urn:gs1:gepir:gepir_common:xsd:4" xmlns:tns="urn:gs1:gepir:gepir_party:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:gepir_party:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:element name="gepirParty" type="tns:GepirPartyType"/>
+  <xs:complexType name="GepirPartyType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="partyDataLine" type="tns:PartyDataLineType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartyDataLineType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gS1CompanyPrefix" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastChangeDate" type="xs:dateTime"/>
+      <xs:element name="partyDataLanguage" type="ns1:LanguageCodeType"/>
+      <xs:element name="returnCode" type="ns2:GepirReturnCodeType"/>
+      <xs:element minOccurs="0" name="address" type="ns1:AddressType"/>
+      <xs:element minOccurs="0" name="gepirRequestedKey" type="ns2:GepirRequestedKeyType"/>
+      <xs:element minOccurs="0" name="responderSpecificData" type="ns2:ResponderSpecificDataType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="gepirItemExternalFileLink" nillable="true" type="ns2:GepirItemExternalFileLinkType"/>
+      <xs:element minOccurs="0" name="gS1CompanyPrefixLicensee" type="ns2:GepirPartyInformationType"/>
+      <xs:element minOccurs="0" name="gS1KeyLicensee" type="ns2:GepirPartyInformationType"/>
+      <xs:element name="informationProvider" type="ns2:GepirPartyInformationType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contact" nillable="true" type="ns1:ContactType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:gepir:gepir_item:xsd:4" xmlns:tns="urn:gs1:gepir:gepir_item_ext:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:gepir_item_ext:xsd:4">
+  <xs:import namespace="urn:gs1:gepir:gepir_item:xsd:4"/>
+  <xs:element name="itemDatalineExtension" type="tns:ItemDataLineExtensionType"/>
+  <xs:complexType name="ItemDataLineExtensionType">
+    <xs:complexContent>
+      <xs:extension base="ns1:ItemDataLineType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="administeringMO" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:ns2="urn:gs1:gepir:gepir_common:xsd:4" xmlns:tns="urn:gs1:gepir:gepir_item:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:gepir_item:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:element name="gepirItem" type="tns:GepirItemType"/>
+  <xs:complexType name="GepirItemType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="itemDataLine" type="tns:ItemDataLineType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemDataLineType">
+    <xs:sequence>
+      <xs:element name="itemDataLanguage" type="ns1:LanguageCodeType"/>
+      <xs:element minOccurs="0" name="lastChangeDate" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="netContent" nillable="true" type="ns1:MeasurementType"/>
+      <xs:element name="returnCode" type="ns2:GepirReturnCodeType"/>
+      <xs:element minOccurs="0" name="tradeItemUnitDescriptor" type="ns2:TradeItemUnitDescriptorCodeType"/>
+      <xs:element minOccurs="0" name="itemName" type="xs:string"/>
+      <xs:element minOccurs="0" name="brandName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="tradeItemClassification" nillable="true" type="ns2:TradeItemClassificationType"/>
+      <xs:element name="gepirRequestedKey" type="ns2:GepirRequestedKeyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="responderSpecificData" nillable="true" type="ns2:ResponderSpecificDataType"/>
+      <xs:element name="informationProvider" type="ns2:GepirPartyInformationType"/>
+      <xs:element minOccurs="0" name="manufacturer" type="ns2:GepirPartyInformationType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="requestedItem" nillable="true" type="ns2:GepirItemExternalFileLinkType"/>
+      <xs:element minOccurs="0" name="size" type="ns1:SizeType"/>
+      <xs:element minOccurs="0" name="nextLowerLevelTradeItemInformation" type="tns:NextLowerLevelTradeItemInformationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NextLowerLevelTradeItemInformationType">
+    <xs:sequence>
+      <xs:element name="quantityOfChildren" type="xs:nonNegativeInteger"/>
+      <xs:element name="totalQuantityOfNextLowerLevelTradeItem" type="xs:nonNegativeInteger"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns1="urn:gs1:shared:shared_common:xsd:3" xmlns:tns="urn:gs1:gepir:gepir_common:xsd:4" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gepir:gepir_common:xsd:4">
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:complexType name="GepirRequestedKeyType">
+    <xs:sequence>
+      <xs:element name="requestedKeyCode" type="tns:RequestedKeyCodeType"/>
+      <xs:element name="requestedKeyValue" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestedLanguage" type="ns1:LanguageCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestedKeyCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="AdditionalTradeItemClassificationCodeListCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="FileFormatCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="GepirReturnCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="GepirStatusCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="GepirVersionCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TradeItemUnitDescriptorCodeType">
+    <xs:simpleContent>
+      <xs:extension base="ns1:GS1CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResponderSpecificDataType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="responderSpecificData" type="xs:string"/>
+      <xs:element minOccurs="0" name="responderSpecificDataUse" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirItemExternalFileLinkType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fileFormatName" type="tns:FileFormatCodeType"/>
+      <xs:element minOccurs="0" name="uniformResourceIdentifier" type="xs:anyURI"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirPartyInformationType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalPartyIdentification" nillable="true" type="ns1:AdditionalPartyIdentificationType"/>
+      <xs:element minOccurs="0" name="gln" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="partyName" nillable="true" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="partyRole" nillable="true" type="ns1:PartyRoleCodeType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="partyContainment" nillable="true" type="tns:PartyContainmentType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartyContainmentType">
+    <xs:sequence>
+      <xs:element name="partyChild" type="tns:GepirPartyInformationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MemberOrganisationType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="countryAdministered" type="ns1:CountryCodeType"/>
+      <xs:element name="lastChangeDate" type="xs:dateTime"/>
+      <xs:element name="returnCode" type="tns:GepirReturnCodeType"/>
+      <xs:element name="url" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="gepirCountry" type="tns:GepirCountryType"/>
+      <xs:element name="informationProvider" type="tns:GepirPartyInformationType"/>
+      <xs:element maxOccurs="unbounded" name="prefixRange" type="tns:PrefixRangeType"/>
+      <xs:element name="gepirInformation" type="tns:GepirInformationType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="contact" nillable="true" type="ns1:ContactType"/>
+      <xs:element minOccurs="0" name="address" type="ns1:AddressType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirCountryType">
+    <xs:sequence>
+      <xs:element name="countryCode" type="ns1:CountryCodeType"/>
+      <xs:element maxOccurs="unbounded" name="countryName" type="ns1:Description70Type"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PrefixRangeType">
+    <xs:sequence>
+      <xs:element name="prefixRangeHigh" type="xs:integer"/>
+      <xs:element name="prefixRangeLow" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirInformationType">
+    <xs:sequence>
+      <xs:element name="gepirClientURI" type="xs:string"/>
+      <xs:element name="gepirStatusCode" type="tns:GepirStatusCodeType"/>
+      <xs:element name="gepirVersionCode" type="tns:GepirVersionCodeType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="supportedLanguage" nillable="true" type="ns1:LanguageCodeType"/>
+      <xs:element maxOccurs="unbounded" name="gepirServer" type="tns:GepirServerType"/>
+      <xs:element name="gepirRouter" type="tns:GepirRouterType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirServerType">
+    <xs:sequence>
+      <xs:element name="serverCountry" type="ns1:CountryCodeType"/>
+      <xs:element name="serverGLN" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GepirRouterType">
+    <xs:sequence>
+      <xs:element name="routerGLN" type="xs:string"/>
+      <xs:element name="routerIPAddress" type="xs:string"/>
+      <xs:element name="routerSubnetMask" type="xs:string"/>
+      <xs:element name="routerURL" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" name="legacyVersion" type="tns:EntryPointType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="gepirRouterTechnicalContact" nillable="true" type="ns1:ContactType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EntryPointType">
+    <xs:sequence>
+      <xs:element name="gepirVersionCode" type="tns:GepirVersionCodeType"/>
+      <xs:element name="routerURL" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TradeItemClassificationType">
+    <xs:sequence>
+      <xs:element name="gpcCategoryCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="gpcCategoryDefinition" type="xs:string"/>
+      <xs:element minOccurs="0" name="gpcCategoryName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassification" nillable="true" type="tns:AdditionalTradeItemClassificationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdditionalTradeItemClassificationType">
+    <xs:sequence>
+      <xs:element name="additionalTradeItemClassificationSystemCode" type="tns:AdditionalTradeItemClassificationCodeListCodeType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema xmlns:ns0="urn:gs1:gepir:request_header:xsd:4" xmlns:ns1="urn:gs1:gepir:gepir_common:xsd:4" 
+			xmlns:ns10="urn:gs1:gepir:get_party_by_name:xsd:4" xmlns:ns11="urn:gs1:gepir:get_item_by_gtin:xsd:4" 
+			xmlns:ns12="urn:gs1:gepir:gepir_item:xsd:4" xmlns:ns13="urn:gs1:gepir:response_header:xsd:4" 
+			xmlns:ns2="urn:gs1:gepir:get_prefix_licensee:xsd:4" xmlns:ns3="urn:gs1:gepir:gepir_party:xsd:4" 
+			xmlns:ns4="urn:gs1:gepir:get_root_directory:xsd:4" xmlns:ns5="urn:gs1:shared:shared_common:xsd:3" 
+			xmlns:ns6="urn:gs1:gepir:root_directory:xsd:4" xmlns:ns7="urn:gs1:gepir:get_router_detail:xsd:4" 
+			xmlns:ns8="urn:gs1:gepir:router_detail:xsd:4" xmlns:ns9="urn:gs1:gepir:get_key_licensee:xsd:4" 
+			xmlns:tns="http://gepir4.ws.gs1.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://gepir4.ws.gs1.org/">
+  <xs:import namespace="urn:gs1:gepir:gepir_common:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_prefix_licensee:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_party:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_root_directory:xsd:4"/>
+  <xs:import namespace="urn:gs1:shared:shared_common:xsd:3"/>
+  <xs:import namespace="urn:gs1:gepir:root_directory:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_router_detail:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:router_detail:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_key_licensee:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_party_by_name:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:get_item_by_gtin:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:gepir_item:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:request_header:xsd:4"/>
+  <xs:import namespace="urn:gs1:gepir:response_header:xsd:4"/>
+  <xs:element name="getItemByGTIN" type="tns:getItemByGTIN"/>
+  <xs:element name="getItemByGTINResponse" type="tns:getItemByGTINResponse"/>
+  <xs:element name="getKeyLicensee" type="tns:getKeyLicensee"/>
+  <xs:element name="getKeyLicenseeResponse" type="tns:getKeyLicenseeResponse"/>
+  <xs:element name="getPartyByName" type="tns:getPartyByName"/>
+  <xs:element name="getPartyByNameResponse" type="tns:getPartyByNameResponse"/>
+  <xs:element name="getPrefixLicensee" type="tns:getPrefixLicensee"/>
+  <xs:element name="getPrefixLicenseeResponse" type="tns:getPrefixLicenseeResponse"/>
+  <xs:element name="getRootDirectory" type="tns:getRootDirectory"/>
+  <xs:element name="getRootDirectoryResponse" type="tns:getRootDirectoryResponse"/>
+  <xs:element name="getRouterDetail" type="tns:getRouterDetail"/>
+  <xs:element name="getRouterDetailResponse" type="tns:getRouterDetailResponse"/>
+  <xs:complexType name="getPrefixLicensee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getPrefixLicensee" type="ns2:GetPrefixLicenseeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPrefixLicenseeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gepirParty" type="ns3:GepirPartyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootDirectory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getRootDirectory" type="ns4:GetRootDirectoryType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootDirectoryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="rootDirectory" type="ns6:RootDirectoryType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRouterDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getRouterDetail" type="ns7:GetRouterDetailType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRouterDetailResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="routerDetail" type="ns8:RouterDetailType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getKeyLicensee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getKeyLicensee" type="ns9:GetKeyLicenseeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getKeyLicenseeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gepirParty" type="ns3:GepirPartyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPartyByName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getPartyByName" type="ns10:GetPartyByNameType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPartyByNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gepirParty" type="ns3:GepirPartyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemByGTIN">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="getItemByGTIN" type="ns11:GetItemByGTINType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemByGTINResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gepirItem" type="ns12:GepirItemType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="requestHeader" nillable="true" type="ns0:RequestHeaderType"/>
+  <xs:element name="responseHeader" nillable="true" type="ns13:ResponseHeaderType"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getPrefixLicenseeResponse">
+    <wsdl:part element="ns1:getPrefixLicenseeResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPrefixLicensee">
+    <wsdl:part element="ns1:getPrefixLicensee" name="parameters">
+    </wsdl:part>
+    <wsdl:part element="ns1:requestHeader" name="requestHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getKeyLicenseeResponse">
+    <wsdl:part element="ns1:getKeyLicenseeResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootDirectory">
+    <wsdl:part element="ns1:getRootDirectory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRouterDetail">
+    <wsdl:part element="ns1:getRouterDetail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRouterDetailResponse">
+    <wsdl:part element="ns1:getRouterDetailResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getKeyLicensee">
+    <wsdl:part element="ns1:getKeyLicensee" name="parameters">
+    </wsdl:part>
+    <wsdl:part element="ns1:requestHeader" name="requestHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPartyByName">
+    <wsdl:part element="ns1:getPartyByName" name="parameters">
+    </wsdl:part>
+    <wsdl:part element="ns1:requestHeader" name="requestHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemByGTIN">
+    <wsdl:part element="ns1:getItemByGTIN" name="parameters">
+    </wsdl:part>
+    <wsdl:part element="ns1:requestHeader" name="requestHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getItemByGTINResponse">
+    <wsdl:part element="ns1:getItemByGTINResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootDirectoryResponse">
+    <wsdl:part element="ns1:getRootDirectoryResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPartyByNameResponse">
+    <wsdl:part element="ns1:getPartyByNameResponse" name="result">
+    </wsdl:part>
+    <wsdl:part element="ns1:responseHeader" name="responseHeader">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Gepir4xService">
+    <wsdl:operation name="getPrefixLicensee">
+      <wsdl:input message="ns1:getPrefixLicensee" name="getPrefixLicensee">
+    </wsdl:input>
+      <wsdl:output message="ns1:getPrefixLicenseeResponse" name="getPrefixLicenseeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootDirectory">
+      <wsdl:input message="ns1:getRootDirectory" name="getRootDirectory">
+    </wsdl:input>
+      <wsdl:output message="ns1:getRootDirectoryResponse" name="getRootDirectoryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRouterDetail">
+      <wsdl:input message="ns1:getRouterDetail" name="getRouterDetail">
+    </wsdl:input>
+      <wsdl:output message="ns1:getRouterDetailResponse" name="getRouterDetailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getKeyLicensee">
+      <wsdl:input message="ns1:getKeyLicensee" name="getKeyLicensee">
+    </wsdl:input>
+      <wsdl:output message="ns1:getKeyLicenseeResponse" name="getKeyLicenseeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPartyByName">
+      <wsdl:input message="ns1:getPartyByName" name="getPartyByName">
+    </wsdl:input>
+      <wsdl:output message="ns1:getPartyByNameResponse" name="getPartyByNameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getItemByGTIN">
+      <wsdl:input message="ns1:getItemByGTIN" name="getItemByGTIN">
+    </wsdl:input>
+      <wsdl:output message="ns1:getItemByGTINResponse" name="getItemByGTINResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

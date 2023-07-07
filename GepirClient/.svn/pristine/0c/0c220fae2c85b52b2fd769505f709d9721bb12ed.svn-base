@@ -1,0 +1,88 @@
+package de.store24.gepir;
+
+import org.gepir.Router;
+
+import ch.ean.gepir.GepirSoapHandler;
+import de.store24.logic.db.entities.Company;
+
+/**
+ * Gs1 Gepir Client connection class
+ *
+ * @author Florian Keller (c) 2014, Marco Janc (c) 2014 - 2016
+ */
+public abstract class AGepirClient
+{
+	protected final static int RETURN_CODE_SUCCESS = 0;
+	protected final static int RETURN_CODE_MULTIPLE_RESULTS = 3;
+	protected final static int RETURN_CODE_RECONNECT = 14;
+
+	/**
+	 * authentication GLN for requests
+	 */
+	protected final String requesterGln;
+
+	/**
+	 * Cascade level
+	 */
+	protected final int cascade;
+
+	/**
+	 * List of GLN's of Company's that shall be ignored and null returned on
+	 * retrieval methods.
+	 */
+	protected final String[] ignoreGLNs;
+
+	/**
+	 * Creates a new GepirClient using the given requester GLN and cascade
+	 * level.<br>
+	 * Creates a new {@link Router} instance so this constructor so any
+	 * exceptions resulting from down services shall be catched.
+	 *
+	 * @param requesterGln
+	 * @param language Optional ISO 639-1 language code to use for request
+	 * @param cascade Cascade level
+	 * @param ignoreGLNs List of GLN's of Company's that shall be ignored and
+	 *            null returned on retrieval methods.
+	 *
+	 * @see GepirSoapHandler#GepirSoapHandler(String, Integer)
+	 */
+	public AGepirClient(final String requesterGln, final String language, final int cascade, final String... ignoreGLNs)
+	{
+		this.requesterGln = requesterGln;
+		this.ignoreGLNs = ignoreGLNs;
+		this.cascade = cascade;
+
+		this.init(language);
+	}
+
+	/**
+	 * Initializes this GepirClient
+	 *
+	 * @param requesterGln
+	 * @param language Optional ISO 639-1 language code to use for request
+	 * @param cascade
+	 * @param ignoreGLNs List of GLN's of Company's that shall be ignored and
+	 *            null returned on retrieval methods.
+	 */
+	protected abstract void init(String languages);
+
+	/**
+	 * Retrieves a Company instance of the manufacturer or vendor that is
+	 * responsible of the item with the given GTIN.
+	 *
+	 * @param gtin
+	 * @return
+	 * @throws GepirResponseException
+	 */
+	public abstract Company getCompanyByGtin(String gtin) throws GepirResponseException;
+
+	/**
+	 * Retrieves a Company instance of the manufacturer defined by the given
+	 * GTIN.
+	 *
+	 * @param gln
+	 * @return
+	 * @throws GepirResponseException
+	 */
+	public abstract Company getCompanyByGln(String gln) throws GepirResponseException;
+}

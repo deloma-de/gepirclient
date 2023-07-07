@@ -1,0 +1,4 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+    prefer="system">
+    <system systemId="http://localhost/gepir-v4.wsdl" uri="gepir-v4.wsdl" />
+</catalog>
