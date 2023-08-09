@@ -1,4 +1,4 @@
-package de.deloma.tools.gepir;
+package de.deloma.gepir;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +92,31 @@ public abstract class AGepirClient
 	 * @throws GepirResponseException
 	 */
 	public abstract GepirCompany getCompanyByGln(String gln) throws GepirResponseException;
+	
+	
+	
+	/**
+	 * Retrieves a Company instance of the manufacturer defined by the given
+	 * GTIN or GLN.
+	 *
+	 * @param type The type of code (GTIN or GLN)
+	 * @param code The code to retrieve the Company instance for
+	 * @return A GepirCompany instance representing the manufacturer
+	 * @throws GepirResponseException If an error occurs during retrieval
+	 */
+    public  GepirCompany getGepirCompany(GepirCodeType type, String code) 
+		throws GepirResponseException
+    {
+    	switch (type) {
+		case GLN:
+			return this.getCompanyByGln(code);
+
+		case GTIN:
+			return this.getCompanyByGtin(code);
+    	}	
+				
+    	return null;
+    }
 
 	/*
 	 * utils

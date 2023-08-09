@@ -1,4 +1,4 @@
-package de.deloma.tools.gepir;
+package de.deloma.gepir;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,5 +198,7 @@ public class GepirClient400 extends AGepirClient
 		GTIN,
 		GLN
 	}
+
+
 
 }

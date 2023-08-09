@@ -1,4 +1,4 @@
-package de.deloma.tools.gepir;
+package de.deloma.gepir;
 
 import java.util.Objects;
 

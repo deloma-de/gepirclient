@@ -1,4 +1,4 @@
-package de.deloma.tools.gepir;
+package de.deloma.gepir;
 
 /**
  * An exception occured on a gepir (GS1) request with the given return code.
